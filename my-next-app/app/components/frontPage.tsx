@@ -11,10 +11,31 @@ import {
   Settings,
   CloudUpload,
 } from "lucide-react";
+import { parseTransactionFile } from "./parseTransactions";
+import { scoreAndGroup, type RiskGroups } from "./scoreTransactions";
 
 export default function TransactScanUpload() {
   const [isDragging, setIsDragging] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [riskGroups, setRiskGroups] = useState<RiskGroups | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const processFile = useCallback(async (file: File) => {
+    setIsProcessing(true);
+    setError(null);
+    setRiskGroups(null);
+
+    try {
+      const transactions = await parseTransactionFile(file);
+      const groups = scoreAndGroup(transactions);
+      setRiskGroups(groups);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to process file");
+    } finally {
+      setIsProcessing(false);
+    }
+  }, []);
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -32,18 +53,22 @@ export default function TransactScanUpload() {
 
     const files = e.dataTransfer.files;
     if (files.length > 0 && files[0].type === "text/csv") {
-      setUploadedFile(files[0]);
+      const file = files[0];
+      setUploadedFile(file);
+      processFile(file);
     }
-  }, []);
+  }, [processFile]);
 
   const handleFileSelect = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const files = e.target.files;
       if (files && files.length > 0) {
-        setUploadedFile(files[0]);
+        const file = files[0];
+        setUploadedFile(file);
+        processFile(file);
       }
     },
-    []
+    [processFile]
   );
 
   const dataPoints = [
@@ -165,7 +190,11 @@ export default function TransactScanUpload() {
                     {(uploadedFile.size / 1024).toFixed(1)} KB
                   </p>
                   <button
-                    onClick={() => setUploadedFile(null)}
+                    onClick={() => {
+                      setUploadedFile(null);
+                      setRiskGroups(null);
+                      setError(null);
+                    }}
                     className="text-sm text-teal-600 hover:text-teal-700"
                   >
                     Remove and upload a different file
@@ -195,6 +224,103 @@ export default function TransactScanUpload() {
               )}
             </div>
           </div>
+
+          {/* Processing Status */}
+          {isProcessing && (
+            <div className="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-6">
+              <div className="flex items-center gap-3">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+                <p className="text-blue-800 font-medium">Processing CSV file...</p>
+              </div>
+            </div>
+          )}
+
+          {/* Error Display */}
+          {error && (
+            <div className="mt-8 bg-red-50 border border-red-200 rounded-xl p-6">
+              <p className="text-red-800 font-medium">Error: {error}</p>
+            </div>
+          )}
+
+          {/* Results Display */}
+          {riskGroups && (
+            <div className="mt-8 space-y-6">
+              <h2 className="text-xl font-semibold text-gray-900">Risk Analysis Results</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                  <h3 className="font-medium text-red-800 mb-2">High Risk</h3>
+                  <p className="text-2xl font-bold text-red-600">{riskGroups.high_risk.length}</p>
+                  <p className="text-sm text-red-600">transactions</p>
+                </div>
+                
+                <div className="bg-orange-50 border border-orange-200 rounded-xl p-4">
+                  <h3 className="font-medium text-orange-800 mb-2">Risky</h3>
+                  <p className="text-2xl font-bold text-orange-600">{riskGroups.risky.length}</p>
+                  <p className="text-sm text-orange-600">transactions</p>
+                </div>
+                
+                <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+                  <h3 className="font-medium text-yellow-800 mb-2">Low Risk</h3>
+                  <p className="text-2xl font-bold text-yellow-600">{riskGroups.low_risk.length}</p>
+                  <p className="text-sm text-yellow-600">transactions</p>
+                </div>
+                
+                <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                  <h3 className="font-medium text-green-800 mb-2">Safe</h3>
+                  <p className="text-2xl font-bold text-green-600">{riskGroups.safe.length}</p>
+                  <p className="text-sm text-green-600">transactions</p>
+                </div>
+              </div>
+
+              {/* Transaction Details */}
+              {Object.entries(riskGroups).map(([riskLevel, transactions]) => (
+                transactions.length > 0 && (
+                  <div key={riskLevel} className="bg-white border border-gray-200 rounded-xl p-6">
+                    <h3 className="text-lg font-medium text-gray-900 mb-4 capitalize">
+                      {riskLevel.replace('_', ' ')} Transactions ({transactions.length})
+                    </h3>
+                    <div className="space-y-3 max-h-96 overflow-y-auto">
+                      {transactions.map((tx, index) => (
+                        <div key={index} className="border border-gray-100 rounded-lg p-4">
+                          <div className="flex justify-between items-start mb-2">
+                            <div>
+                              <p className="font-medium text-gray-900">{tx.name}</p>
+                              <p className="text-sm text-gray-500">ID: {tx.transactionID}</p>
+                            </div>
+                            <div className="text-right">
+                              <p className="font-medium text-gray-900">
+                                ${tx.amount?.toLocaleString() ?? 'N/A'}
+                              </p>
+                              <p className="text-sm text-gray-500">{tx.country}</p>
+                            </div>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <p className="text-sm text-gray-500">
+                              {tx.dateTime?.toLocaleString() ?? 'Invalid date'}
+                            </p>
+                            <div className="text-right">
+                              <p className="text-sm font-medium">Score: {tx.score}/100</p>
+                              {tx.flags.length > 0 && (
+                                <div className="mt-1">
+                                  <p className="text-xs text-gray-500">Flags:</p>
+                                  <ul className="text-xs text-gray-600">
+                                    {tx.flags.map((flag, flagIndex) => (
+                                      <li key={flagIndex}>• {flag}</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )
+              ))}
+            </div>
+          )}
 
           {/* Supported Data Points */}
           <div className="mt-8">

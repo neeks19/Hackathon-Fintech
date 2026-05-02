@@ -1,0 +1,21 @@
+transactionId,Name,amount,country,date
+TXN-001,Alice Johnson,250.00,United States,2024-01-05
+TXN-002,Bob Smith,120.50,United Kingdom,2024-01-08
+TXN-003,Alice Johnson,340.00,United States,2024-01-15
+TXN-004,Carlos Mendez,89.99,Mexico,2024-01-20
+TXN-005,Yuki Tanaka,500.00,Japan,2024-02-02
+TXN-006,Bob Smith,200.00,United Kingdom,2024-02-10
+TXN-007,Priya Patel,175.25,India,2024-02-14
+TXN-008,Alice Johnson,620.00,United States,2024-02-19
+TXN-009,Carlos Mendez,45.00,Mexico,2024-02-25
+TXN-010,Lena Müller,310.00,Germany,2024-03-01
+TXN-011,Yuki Tanaka,275.00,Japan,2024-03-07
+TXN-012,Priya Patel,400.00,India,2024-03-12
+TXN-013,James Okafor,150.00,Nigeria,2024-03-18
+TXN-014,Lena Müller,95.50,Germany,2024-03-22
+TXN-015,Bob Smith,530.00,United Kingdom,2024-04-03
+TXN-016,James Okafor,210.00,Nigeria,2024-04-09
+TXN-017,Alice Johnson,180.00,United States,2024-04-15
+TXN-018,Yuki Tanaka,640.00,Japan,2024-04-21
+TXN-019,Carlos Mendez,300.00,Mexico,2024-04-28
+TXN-020,Priya Patel,225.75,India,2024-05-05
