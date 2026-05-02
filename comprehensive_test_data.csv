@@ -1,0 +1,101 @@
+transactionId,Name,amount,country,date
+TXN-001,Google Ads,-2500.00,United States,2024-01-05
+TXN-002,Facebook Marketing,-1800.00,United States,2024-01-08
+TXN-003,Alice Johnson,250.00,United States,2024-01-15
+TXN-004,Carlos Mendez,89.99,Mexico,2024-01-20
+TXN-005,Yuki Tanaka,500.00,Japan,2024-02-02
+TXN-006,Bob Smith,120.50,United Kingdom,2024-02-10
+TXN-007,Priya Patel,175.25,India,2024-02-14
+TXN-008,Alice Johnson,340.00,United States,2024-02-19
+TXN-009,Carlos Mendez,45.00,Mexico,2024-02-25
+TXN-010,Lena Müller,310.00,Germany,2024-03-01
+TXN-011,Yuki Tanaka,275.00,Japan,2024-03-07
+TXN-012,Priya Patel,400.00,India,2024-03-12
+TXN-013,James Okafor,150.00,Nigeria,2024-03-18
+TXN-014,Lena Müller,95.50,Germany,2024-03-22
+TXN-015,Bob Smith,530.00,United Kingdom,2024-04-03
+TXN-016,James Okafor,210.00,Nigeria,2024-04-09
+TXN-017,Alice Johnson,180.00,United States,2024-04-15
+TXN-018,Yuki Tanaka,640.00,Japan,2024-04-21
+TXN-019,Carlos Mendez,300.00,Mexico,2024-04-28
+TXN-020,Priya Patel,225.75,India,2024-05-05
+TXN-021,Office Depot,-450.00,United States,2024-01-10
+TXN-022,Adobe Creative Cloud,-99.00,United States,2024-01-15
+TXN-023,Amazon Business,-320.00,United States,2024-01-20
+TXN-024,Google Ads,-2800.00,United States,2024-02-05
+TXN-025,Facebook Marketing,-2100.00,United States,2024-02-08
+TXN-026,Office Depot,-380.00,United States,2024-02-15
+TXN-027,Adobe Creative Cloud,-99.00,United States,2024-02-15
+TXN-028,Amazon Business,-675.00,United States,2024-02-22
+TXN-029,Uber Business,-150.00,United States,2024-03-01
+TXN-030,Delta Airlines,-1200.00,United States,2024-03-05
+TXN-031,Google Ads,-3200.00,United States,2024-03-05
+TXN-032,Facebook Marketing,-2400.00,United States,2024-03-08
+TXN-033,Office Depot,-290.00,United States,2024-03-12
+TXN-034,Adobe Creative Cloud,-99.00,United States,2024-03-15
+TXN-035,Amazon Business,-890.00,United States,2024-03-18
+TXN-036,Uber Business,-200.00,United States,2024-03-20
+TXN-037,Delta Airlines,-950.00,United States,2024-03-25
+TXN-038,Google Ads,-3500.00,United States,2024-04-05
+TXN-039,Facebook Marketing,-2600.00,United States,2024-04-08
+TXN-040,Office Depot,-520.00,United States,2024-04-10
+TXN-041,Adobe Creative Cloud,-99.00,United States,2024-04-15
+TXN-042,Amazon Business,-1200.00,United States,2024-04-20
+TXN-043,Uber Business,-175.00,United States,2024-04-22
+TXN-044,Delta Airlines,-1800.00,United States,2024-04-28
+TXN-045,Google Ads,-4100.00,United States,2024-05-05
+TXN-046,Facebook Marketing,-3100.00,United States,2024-05-08
+TXN-047,Office Depot,-680.00,United States,2024-05-12
+TXN-048,Adobe Creative Cloud,-99.00,United States,2024-05-15
+TXN-049,Amazon Business,-1450.00,United States,2024-05-18
+TXN-050,Uber Business,-225.00,United States,2024-05-20
+TXN-051,Delta Airlines,-2200.00,United States,2024-05-25
+TXN-052,Shell Corporation,-50000.00,Cayman Islands,2024-01-15
+TXN-053,Anonymous Holdings,-25000.00,Belarus,2024-02-01
+TXN-054,Crypto Wallet,-15000.00,Russia,2024-02-15
+TXN-055,Offshore Nominee,-75000.00,North Korea,2024-03-01
+TXN-056,James Okafor,9999.00,Nigeria,2024-01-10
+TXN-057,James Okafor,9999.00,Nigeria,2024-01-12
+TXN-058,James Okafor,9999.00,Nigeria,2024-01-14
+TXN-059,Carlos Mendez,4999.00,Mexico,2024-02-05
+TXN-060,Carlos Mendez,4999.00,Mexico,2024-02-07
+TXN-061,Carlos Mendez,4999.00,Mexico,2024-02-09
+TXN-062,Alice Johnson,1000.00,United States,2024-03-01
+TXN-063,Alice Johnson,1500.00,United States,2024-03-02
+TXN-064,Alice Johnson,800.00,United States,2024-03-03
+TXN-065,Alice Johnson,1200.00,United States,2024-03-04
+TXN-066,Alice Johnson,900.00,United States,2024-03-05
+TXN-067,Bob Smith,2000.00,United Kingdom,2024-04-01
+TXN-068,Bob Smith,1800.00,United Kingdom,2024-04-02
+TXN-069,Bob Smith,2200.00,United Kingdom,2024-04-03
+TXN-070,Bob Smith,1900.00,United Kingdom,2024-04-04
+TXN-071,Bob Smith,2100.00,United Kingdom,2024-04-05
+TXN-072,Yuki Tanaka,3000.00,Japan,2024-05-01
+TXN-073,Yuki Tanaka,2800.00,Japan,2024-05-02
+TXN-074,Yuki Tanaka,3200.00,Japan,2024-05-03
+TXN-075,Yuki Tanaka,2900.00,Japan,2024-05-04
+TXN-076,Yuki Tanaka,3100.00,Japan,2024-05-05
+TXN-077,Priya Patel,2500.00,India,2024-01-20
+TXN-078,Priya Patel,2300.00,India,2024-01-22
+TXN-079,Priya Patel,2700.00,India,2024-01-24
+TXN-080,Priya Patel,2400.00,India,2024-01-26
+TXN-081,Priya Patel,2600.00,India,2024-01-28
+TXN-082,Late Payer Corp,5000.00,United States,2024-01-01
+TXN-083,Late Payer Corp,4500.00,United States,2024-02-01
+TXN-084,Late Payer Corp,4800.00,United States,2024-03-01
+TXN-085,Late Payer Corp,5200.00,United States,2024-04-01
+TXN-086,Late Payer Corp,4700.00,United States,2024-05-01
+TXN-087,Reliable Customer Inc,5500.00,United States,2024-01-05
+TXN-088,Reliable Customer Inc,5600.00,United States,2024-02-05
+TXN-089,Reliable Customer Inc,5400.00,United States,2024-03-05
+TXN-090,Reliable Customer Inc,5700.00,United States,2024-04-05
+TXN-091,Reliable Customer Inc,5500.00,United States,2024-05-05
+TXN-092,Shell Corporation,-10000.00,Cayman Islands,2024-01-10
+TXN-093,Anonymous Holdings,-8000.00,Belarus,2024-02-10
+TXN-094,Crypto Wallet,-12000.00,Russia,2024-03-10
+TXN-095,Offshore Nominee,-15000.00,North Korea,2024-04-10
+TXN-096,Casino Payments,-5000.00,Philippines,2024-05-10
+TXN-097,Gambling Site,-3000.00,Cyprus,2024-01-25
+TXN-098,Betting Platform,-4000.00,Malta,2024-02-25
+TXN-099,Payday Lender,-2500.00,South Africa,2024-03-25
+TXN-100,Hawala Transfer,-6000.00,UAE,2024-04-25
