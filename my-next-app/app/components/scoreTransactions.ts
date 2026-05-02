@@ -209,6 +209,43 @@ const rules: Rule[] = [
       flag: `Suspicious name keyword(s): ${hit.join(", ")}`,
     };
   },
+
+  // 14. High-frequency transactions from same person within short time period
+  (tx, allTx) => {
+    if (!tx.dateTime || !tx.name) return null;
+    
+    // Get all transactions from this person
+    const personTxs = allTx.filter(
+      (t) => t.name.trim().toLowerCase() === tx.name.trim().toLowerCase() && t.dateTime
+    ).sort((a, b) => a.dateTime!.getTime() - b.dateTime!.getTime());
+    
+    if (personTxs.length < 3) return null;
+    
+    // Check for any 3 transactions within 7 days
+    for (let i = 0; i <= personTxs.length - 3; i++) {
+      const windowStart = personTxs[i].dateTime!;
+      const windowEnd = new Date(windowStart.getTime() + 7 * 24 * 60 * 60 * 1000); // 7 days later
+      
+      let countInWindow = 0;
+      for (let j = i; j < personTxs.length; j++) {
+        if (personTxs[j].dateTime! <= windowEnd) {
+          countInWindow++;
+        } else {
+          break;
+        }
+      }
+      
+      if (countInWindow >= 3) {
+        const daysSpan = Math.ceil((personTxs[i + countInWindow - 1].dateTime!.getTime() - windowStart.getTime()) / (24 * 60 * 60 * 1000));
+        return {
+          points: 25,
+          flag: `High-frequency activity: ${countInWindow} transactions in ${daysSpan} days`,
+        };
+      }
+    }
+    
+    return null;
+  },
 ];
 
 // ─── Scorer ────────────────────────────────────────────────────────────────
