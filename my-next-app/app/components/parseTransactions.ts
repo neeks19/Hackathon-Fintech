@@ -42,7 +42,6 @@ const COLUMN_MAP: Record<string, keyof Transaction> = {
   amount:        "amount",
   country:       "country",
   datetime:      "dateTime",
-  date:          "dateTime",
 };
 
 function parseAmount(raw: string): number | null {

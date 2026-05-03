@@ -411,15 +411,44 @@ export function analyzeBusinessHealth(transactions: Transaction[]): BusinessHeal
   const expenseCategories: Record<string, number> = {};
   expenseTxs.forEach(tx => {
     const name = tx.name.toLowerCase();
-    let category = 'other';
-    if (name.includes('office') || name.includes('supply')) category = 'office_supplies';
-    else if (name.includes('marketing') || name.includes('advertis')) category = 'marketing';
-    else if (name.includes('software') || name.includes('subscription')) category = 'software';
-    else if (name.includes('travel') || name.includes('hotel') || name.includes('flight')) category = 'travel';
-    else if (name.includes('salary') || name.includes('payroll')) category = 'payroll';
-    else if (name.includes('rent') || name.includes('lease')) category = 'rent';
-    else if (name.includes('utility') || name.includes('electric')) category = 'utilities';
-    
+    let category = 'Other';
+
+    if (name.includes('office') || name.includes('supply') || name.includes('stationery')) {
+      category = 'Office Supplies';
+    } else if (name.includes('marketing') || name.includes('advertis') || name.includes('campaign') || name.includes('promo')) {
+      category = 'Marketing';
+    } else if (name.includes('software') || name.includes('subscription') || name.includes('saas') || name.includes('license')) {
+      category = 'Software & Subscriptions';
+    } else if (name.includes('travel') || name.includes('hotel') || name.includes('flight') || name.includes('airline') || name.includes('uber') || name.includes('lyft')) {
+      category = 'Travel';
+    } else if (name.includes('salary') || name.includes('payroll') || name.includes('wages') || name.includes('payroll')) {
+      category = 'Payroll';
+    } else if (name.includes('rent') || name.includes('lease') || name.includes('landlord')) {
+      category = 'Rent & Lease';
+    } else if (name.includes('utility') || name.includes('electric') || name.includes('water') || name.includes('gas') || name.includes('internet') || name.includes('phone')) {
+      category = 'Utilities';
+    } else if (name.includes('insurance') || name.includes('premiu') || name.includes('coverage')) {
+      category = 'Insurance';
+    } else if (name.includes('consult') || name.includes('legal') || name.includes('account') || name.includes('audit')) {
+      category = 'Professional Services';
+    } else if (name.includes('ship') || name.includes('logistic') || name.includes('freight') || name.includes('courier')) {
+      category = 'Shipping & Logistics';
+    } else if (name.includes('equip') || name.includes('hardware') || name.includes('machine') || name.includes('tools')) {
+      category = 'Equipment';
+    } else if (name.includes('inventory') || name.includes('stock') || name.includes('wholesale') || name.includes('supplier')) {
+      category = 'Inventory';
+    } else if (name.includes('meal') || name.includes('food') || name.includes('restaurant') || name.includes('diner') || name.includes('cafe')) {
+      category = 'Meals & Entertainment';
+    } else if (name.includes('bank fee') || name.includes('transaction fee') || name.includes('atm fee')) {
+      category = 'Bank Fees';
+    } else if (name.includes('tax') || name.includes('vat') || name.includes('sales tax') || name.includes('gst')) {
+      category = 'Taxes';
+    } else if (name.includes('repair') || name.includes('maintenance') || name.includes('service charge') || name.includes('maintenance')) {
+      category = 'Maintenance';
+    } else if (name.includes('training') || name.includes('education') || name.includes('course') || name.includes('seminar') || name.includes('conference')) {
+      category = 'Training & Education';
+    }
+
     expenseCategories[category] = (expenseCategories[category] || 0) + Math.abs(tx.amount!);
   });
   
